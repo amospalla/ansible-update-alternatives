@@ -17,11 +17,9 @@
   when: update_alternatives_found and ansible_os_family == 'Debian'
 
 - name: RedHat | Set alternative
-  lineinfile:
+  template:
+    src: export.sh
     dest: '/etc/profile.d/{{ update_alternatives_item.name }}.sh'
-    regexp: '^export {{ update_alternatives_item.name|upper() }}='
-    line: 'export {{ update_alternatives_item.name|upper() }}={{ update_alternatives_alternative }}'
-    create: yes
     owner: root
     group: root
     mode: 0755
