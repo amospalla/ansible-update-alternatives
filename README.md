@@ -9,7 +9,7 @@ Works with ansible_os_family in ['Debian', 'RedHat'].
 
 On Debian family OS it uses update-alternatives.
 
-On RedHat family OS it exports the environment variable {{ item.name|upper() }} on file /etc/profile.d/{{ name }}.sh. On the example below it would create the file /etc/profile.d/editor.sh with the contents "export EDITOR=/bin/vi"
+On RedHat family OS it exports the environment variable {{ item.name|upper() }} on file /etc/profile.d/{{ name }}.sh. On the example below it would create the file /etc/profile.d/editor.sh with the contents "export EDITOR=/bin/vi" (if it is true that the file /bin/vi existed).
 
 ## Variables
 
