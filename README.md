@@ -3,13 +3,13 @@
 
 ## Description
 
-Sets update-alternatives.
+Sets update-alternatives based on a list of items. The first path found amongst the specified is the used. If no path is found no change is done.
 
 Works with ansible_os_family in ['Debian', 'RedHat'].
 
-On Debian family OS it uses update-alternatives. On RedHat family OS it exports the environment variable on file /etc/profile.d/{{ name }}.sh
+On Debian family OS it uses update-alternatives.
 
-If no file is found amongst the specifid for an item it is ignored and nothing is changed.
+On RedHat family OS it exports the environment variable {{ item.name|upper() }} on file /etc/profile.d/{{ name }}.sh. On the example below it would create the file /etc/profile.d/editor.sh with the contents "export EDITOR=/bin/vi"
 
 ## Variables
 
