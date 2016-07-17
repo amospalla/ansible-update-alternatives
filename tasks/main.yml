@@ -1,0 +1,9 @@
+---
+- name: Loop items
+  include: update-alternatives-with-items.yml
+  with_items: '{{ update_alternatives[ansible_os_family] }}'
+  loop_control:
+    loop_var: update_alternatives_item
+  when: ansible_os_family in ['Debian', 'RedHat']
+  tags:
+    - update-alternatives

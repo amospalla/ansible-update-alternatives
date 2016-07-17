@@ -1,0 +1,45 @@
+---
+update_alternatives:
+  Debian:
+    - name: editor
+      files:
+        - /usr/bin/vim.gnome
+        - /usr/bin/vim.gtk
+        - /usr/bin/vim.athena
+        - /usr/bin/vim.nox
+        - /usr/bin/vim.tiny
+        - /bin/nano
+    - name: vimdiff
+      files:
+        - /usr/bin/vim.gnome
+        - /usr/bin/vim.gtk
+        - /usr/bin/vim.athena
+        - /usr/bin/vim.nox
+    - name: vim
+      files:
+        - /usr/bin/vim.gnome
+        - /usr/bin/vim.gtk
+        - /usr/bin/vim.athena
+        - /usr/bin/vim.nox
+    - name: vi
+      files:
+        - /usr/bin/vim.gnome
+        - /usr/bin/vim.gtk
+        - /usr/bin/vim.athena
+        - /usr/bin/vim.nox
+        - /usr/bin/vim.tiny
+    - name: pager
+      files:
+        - /bin/less
+        - /bin/more
+  RedHat:
+    - name: pager
+      files:
+        - /bin/less
+        - /bin/more
+    - name: editor
+      profile_d_name: editor.sh
+      files:
+        - /usr/bin/vim
+        - /bin/vi
+        - /usr/bin/nano

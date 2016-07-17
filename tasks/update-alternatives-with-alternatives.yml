@@ -1,0 +1,13 @@
+---
+- name: Get if alternative exists
+  stat:
+    path: '{{ update_alternatives_file }}'
+    follow: True
+  register: update_alternatives_stat
+
+- name: Alternative found=True
+  set_fact:
+    update_alternatives_found: True
+    update_alternatives_alternative: '{{ update_alternatives_file }}'
+  when: update_alternatives_stat.stat.isreg is defined and
+        update_alternatives_stat.stat.isreg

@@ -1,0 +1,28 @@
+---
+- name: Set found=False
+  set_fact:
+    update_alternatives_found: False
+
+- name: Loop over alternatives
+  include: update-alternatives-with-alternatives.yml
+  with_items: '{{ update_alternatives_item.files }}'
+  loop_control:
+    loop_var: update_alternatives_file
+  when: not update_alternatives_found
+
+- name: Debian | Set alternative
+  alternatives:
+    name: '{{ update_alternatives_item.name }}'
+    path: '{{ update_alternatives_alternative }}'
+  when: update_alternatives_found and ansible_os_family == 'Debian'
+
+- name: RedHat | Set alternative
+  lineinfile:
+    dest: '/etc/profile.d/{{ update_alternatives_item.name }}.sh'
+    regexp: '^export {{ update_alternatives_item.name|upper() }}='
+    line: 'export {{ update_alternatives_item.name|upper() }}={{ update_alternatives_alternative }}'
+    create: yes
+    owner: root
+    group: root
+    mode: 0755
+  when: update_alternatives_found and ansible_os_family == 'RedHat'
